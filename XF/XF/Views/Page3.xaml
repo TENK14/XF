@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XF.Views.Page3"
+             Title="Detail">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BindingContext="{Binding Customer}" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Id: " 
+                       Grid.Column="0"
+                       HorizontalTextAlignment="Start"
+                       FontAttributes="Bold"
+                       BackgroundColor="LightGray"
+                       />
+                <Label Text="{Binding Id}" 
+                       Grid.Column="1"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="FirstName: "
+                       Grid.Column="0"
+                       HorizontalTextAlignment="Start"
+                       FontAttributes="Bold"
+                       BackgroundColor="LightGray"/>
+                <Label Text="{Binding FirstName}" 
+                       Grid.Column="1" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="LastName: "
+                       Grid.Column="0"
+                       HorizontalTextAlignment="Start"
+                       FontAttributes="Bold"
+                       BackgroundColor="LightGray"/>
+                <Label Text="{Binding LastName}" 
+                       Grid.Column="1" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

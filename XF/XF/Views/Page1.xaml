@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XF.Views.Page1"
+             xmlns:viewModels="clr-namespace:XF.ViewModels"
+             Title="Page 1">
+    <ContentPage.BindingContext>
+        <!--<viewModels:CustomerViewModel />-->
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Label Text="Nová položka:" />
+            <StackLayout Orientation="Horizontal">
+                <Editor x:Name="Editor" 
+                        HorizontalOptions="FillAndExpand"
+                        Text="{Binding Name}"
+                        />
+
+                <Button x:Name="Button"
+                    Text="Add"
+                    Command="{Binding AddCommand}"
+                    CommandParameter="{Binding Path=Text, Source={Reference Editor}}"
+                        />
+
+            </StackLayout>
+            <Slider x:Name="Slider" Maximum="24" Minimum="5" Value="12" />
+            <!-- Binding context můžeme nastavit i na konkrétní View -->
+            <!--BindingContext="{viewModels:CustomerViewModel}"-->
+            <ListView x:Name="ListView"
+                  
+                  ItemsSource="{Binding CustomerList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                    <Label Text="{Binding FirstName}"
+                                       FontSize="{Binding Path=Value, Source={Reference Slider}}" />
+                                    <Label Text="{Binding LastName}"
+                                       FontSize="{Binding Path=Value, Source={Reference Slider}}" />
+                                    <!--<Label Text="{Binding Path=Text, Source={Reference Editor}}" />-->
+                                </StackLayout>
+                            </ViewCell.View>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete" 
+                                          Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference Name=ListView}}"
+                                          CommandParameter="{Binding .}" />
+                                <MenuItem Text="Detail" 
+                                          Command="{Binding Path=BindingContext.DetailItemCommand, Source={x:Reference Name=ListView}}"
+                                          CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            <Button Text="Next page"
+                    Command="{Binding NextPageCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
